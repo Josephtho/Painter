@@ -1,0 +1,356 @@
+*{    box-sizing: border-box;}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+body{
+    /* structure */
+    margin: 0 auto;
+    min-height: 100%;
+    width: 90%;
+
+    /* presentation */
+    background-color: #3E3E3E;
+    font-family: 'Open Sans', sans-serif;
+
+      -webkit-user-select: none;
+     -moz-user-select: -moz-none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+body::after {
+  content: "";
+  background: url(../img/bg.jpg);
+  background-size: contain;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -2;   
+}
+
+div#preview {
+    position: absolute;
+    top: 100px;
+    left: 476px;
+    width: 80px;
+    height: 80px;
+    border: 5px solid white;
+    box-shadow: 3px 3px 6px 0 #5A6876;
+    z-index: 10;
+}
+
+div#confirm {
+    width: 200px;
+    height: 120px;
+    background-color: rgba(18,197,0,0.7);
+    position: absolute;
+    top: 250px;
+    right: 420px;
+    border-radius: 30px;
+    font-family: 'Courgette', cursive;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+div#flash {
+    background-color: rgba(255,255,255,1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+}
+
+canvas{
+    background-color: white;
+    box-shadow: 3px 3px 6px 0 #2C3E50;
+    cursor: crosshair;
+    flex-grow: 0;
+}
+
+canvas + canvas{
+    margin-left: 2em;
+    position: absolute;
+    top: 100px;
+    left: 180px;
+    z-index: 100;
+}
+
+h1{
+    font-family: 'Courgette', cursive;
+    color: #CBFCFF;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 2px #E79C94;
+    float: right;
+    margin: 0;
+    margin-bottom: 20px;
+    margin-right: 30px;
+    margin-top: 20px;
+}
+
+main{margin: 2em 0;}
+
+body>section {
+    clear: right;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+}
+
+
+section section {
+    flex: 1 0 auto;
+    display: flex;
+    padding-right: 30px;
+}
+
+/********************** CLASSES GENERALES **********************/
+
+.hide{    display: none;}
+
+
+/********************** PALETTE DE COULEURS **********************/
+
+.pen-color.picker{
+    background-image: -webkit-gradient(linear,  left top,  right bottom, 
+    color-stop(0.00, red), 
+    color-stop(20%, orange),
+    color-stop(32%, yellow),
+    color-stop(48%, green),
+    color-stop(60%, blue),
+    color-stop(76%, indigo),
+    color-stop(1.00, violet));
+    border: 2px solid white;
+    box-shadow: 0 0 3px 1px black;
+    outline: none;
+}
+
+
+/********************** COULEURS DE CRAYON PREDEFINIES **********************/
+
+.pen-color{
+    /* structure */
+    display: inline-block;
+    height: 2em;
+    position: relative;
+    top: 0.5em;
+    width: 2em;
+
+    /* presentation */
+    border-radius: 1em;
+    box-shadow: 3px 3px 5px 3px black;
+}
+
+.pen-color.picker {
+}
+
+.pen-color.white{    background-color: #ffffff;}
+.pen-color.lightgrey{    background-color: lightgrey;}
+.pen-color.grey{    background-color: grey;}
+.pen-color.black{    background-color: black;}
+.pen-color.maroon{   background-color: #5C2121;}
+.pen-color.brown{   background-color: #854200;}
+.pen-color.red{      background-color: #B9121B;}
+.pen-color.orange{      background-color: #FF8200;}
+.pen-color.yellow{   background-color: #FFBD07;}
+.pen-color.green{    background-color: #13B813;}
+.pen-color.darkgreen{    background-color: #055D00;}
+.pen-color.blue{     background-color: #1680D1;}
+.pen-color.darkblue{ background-color: #00119E;}
+
+
+.pen-color + .pen-color{    margin-left: 1em;}
+
+.pen-size {
+    font-size: 80%;
+    padding: 0;
+}
+
+#tool-clear-canvas {
+    margin-left: auto;
+    margin-right: 30px;
+}
+
+/********************** BARRE D'OUTILS **********************/
+
+.toolbar ul{
+    /* structure */
+    height: 500px;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+
+    /* presentation */
+    list-style-type: none;
+    justify-content: flex-start;
+}
+
+.toolbar ul li{
+    margin-bottom: 1em;
+    margin-top: 1em;
+/*    padding: 10px 0 10px;*/
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.toolbar ul li+li {
+    flex-wrap: nowrap;
+}
+
+.toolbar ul li label{
+    /* structure */
+    line-height: 2.5em;
+    width: 100px;
+
+    /* presentation */
+    color: #C1E6FE;
+    font-weight: bold;
+}
+
+
+
+/*.toolbar ul li:first-child{
+    margin-bottom: 50px
+}*/
+
+button.tool{
+    margin: 0 10px;
+    font-size: 1.5rem;
+    box-shadow: 3px 3px 5px 3px black;
+
+}
+
+
+.toolbar ul li:last-child{
+    margin-top: auto;
+    display: flex;
+}
+
+
+
+.pen-size,
+.pen-opacity{
+    -webkit-appearance: none;
+    width: 50%;
+    background-color: transparent;
+}
+.pen-size::-webkit-slider-runnable-track,
+.pen-opacity::-webkit-slider-runnable-track{
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px 3px black;
+
+}
+.pen-size::-webkit-slider-thumb,
+.pen-opacity::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    border: none;
+    height: 30px;
+    width: 16px;
+    border-radius: 50%;
+    background: #000000;
+    margin-top: -13px;
+    border: 2px solid white;
+    box-shadow: 3px 3px 5px 3px black;
+    
+}
+.pen-size:focus,
+.pen-opacity:focus {
+    outline: none;}
+p.displaySize, 
+p.displayOpacity{
+    margin: auto 10px;
+    font-size: 120%;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(80,80,80,0.9);
+    border-radius: 20px;
+    padding:5px 10px;
+}
+
+nav.toolbar ul li:nth-child(4){
+    justify-content: flex-end;
+    margin-right: 25px;
+
+}
+
+nav.toolbar ul li .currentinfo {
+    
+    height: 100px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 20px;
+    border: 3px solid black;
+
+    box-shadow: 10px 10px 10px 1px black;
+
+
+    background: rgb(210,223,237); /* Old browsers */
+    background: -moz-linear-gradient(45deg, rgba(210,223,237,1) 0%, rgba(200,215,235,1) 26%, rgba(190,208,234,1) 51%, rgba(166,192,227,1) 51%, rgba(175,199,232,1) 62%, rgba(186,208,239,1) 75%, rgba(153,181,219,1) 88%, rgba(121,155,200,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(210,223,237,1) 0%,rgba(200,215,235,1) 26%,rgba(190,208,234,1) 51%,rgba(166,192,227,1) 51%,rgba(175,199,232,1) 62%,rgba(186,208,239,1) 75%,rgba(153,181,219,1) 88%,rgba(121,155,200,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(210,223,237,1) 0%,rgba(200,215,235,1) 26%,rgba(190,208,234,1) 51%,rgba(166,192,227,1) 51%,rgba(175,199,232,1) 62%,rgba(186,208,239,1) 75%,rgba(153,181,219,1) 88%,rgba(121,155,200,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2dfed', endColorstr='#799bc8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+nav.toolbar ul li .currentinfo .currentcolor {
+    background-color: black;
+    height: 4em;
+    width: 4em;
+    /* presentation */
+    border-radius: 50%;
+    border: 3px solid black;
+
+}
+
+nav.toolbar ul li .currentinfo .lastcolor{
+    margin-right: -20px;
+    margin-top: 20px;
+    border: 3px solid black;
+
+}
+
+nav.toolbar ul li .currentinfo .currenttool {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+    border: 3px solid black;
+    font-size: 2.8rem;
+    color: black;
+    position: relative;
+
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a0a8af+0,4d4d56+36,5a6a84+100 */
+    background: rgb(160,168,175); /* Old browsers */
+    background: -moz-linear-gradient(left, rgba(160,168,175,1) 0%, rgba(77,77,86,1) 36%, rgba(90,106,132,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(160,168,175,1) 0%,rgba(77,77,86,1) 36%,rgba(90,106,132,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(160,168,175,1) 0%,rgba(77,77,86,1) 36%,rgba(90,106,132,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a0a8af', endColorstr='#5a6a84',GradientType=1 ); /* IE6-9 */
+}
+
+nav.toolbar ul li .currentinfo .currenttool i {
+    position: absolute;
+    top: 7px;
+    left: 5px;
+}
+
+
+#save {
+    margin-left: 1rem;
+}
+
+.ui-effects-transfer{
+    background-color: white;
+    border: 1px dashed #000;
+    opacity: 0.8;
+}

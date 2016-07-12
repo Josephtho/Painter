@@ -1,0 +1,109 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Painter</title>
+
+	<link rel="stylesheet" href="css/normalize.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans|Courgette' rel='stylesheet' type='text/css'>
+	<link rel="icon" href="favicon.ico" type="ico">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link href="css/style.css" rel="stylesheet">
+
+
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src='js/jquery.easings.min.js'></script>
+	<script src='http://code.jquery.com/ui/1.11.4/jquery-ui.min.js'></script>
+<!-- Classes -->
+	<script src="js/utilities.js"></script>
+	<script src="js/ColorPicker.class.js"></script>
+	<script src="js/Pen.class.js"></script>
+	<script src="js/Canvas.class.js"></script>
+	<script src="js/saveImg.js"></script>
+
+	<script src="js/Toolbox.class.js"></script>
+
+	<script src="js/Program.class.js"></script>
+	<script src="js/script.js"></script>
+
+	<!-- #Classes -->
+</head>
+<body>
+	<h1>Painter</h1>
+		
+	<section>
+		<section>
+			<canvas id="slate" width="800" height="550" ></canvas>
+			<canvas id="colorpicker" class="color-palette hide" height="256" width="256"></canvas>
+			<div id='preview' class='hide'></div>
+			<div id='confirm' class="hide">
+				<p>Image<br>saved !</p>
+			</div>
+			<div id="flash" class="hide"></div>
+		</section>
+		<nav class="toolbar">
+			<ul>
+				<li>
+					<label>Color</label>
+					<button class="pen-color picker" id="tool-color-picker"></button>
+					<div class="pen-color white" data-pen-color="white" ></div>
+					<div class="pen-color lightgrey" data-pen-color="lightgrey" ></div>
+					<div class="pen-color grey" data-pen-color="grey" ></div>
+					<div class="pen-color black" data-pen-color="black" ></div>
+					<div class="pen-color maroon" data-pen-color="#5C2121" ></div>
+					<div class="pen-color brown" data-pen-color="#854200" ></div>
+					<div class="pen-color red" data-pen-color="#B9121B" ></div>
+					<div class="pen-color orange" data-pen-color="#FF8200" ></div>
+					<div class="pen-color yellow" data-pen-color="#FFBD07" ></div>
+					<div class="pen-color green" data-pen-color="#13B813" ></div>
+					<div class="pen-color darkgreen" data-pen-color="#055D00"></div>
+					<div class="pen-color blue" data-pen-color="#1680D1" ></div>
+					<div class="pen-color darkblue" data-pen-color="#00119E" ></div>
+				</li>
+				<li>
+					<label for="pen-size">Thickness</label>
+					<input type="range" class="pen-size" name="pen-size" min="1" max="60" step="1" value="1"><p class='displaySize'>1 px</p>
+				</li>
+<!-- 			<li>
+					<label for="pen-opacity">Opacity</label>
+					<input type="range" class="pen-opacity" name="pen-opacity" min="2" max="100" step="2" value="100"><p class='displayOpacity'>100 %</p>
+				</li> -->
+				<li>
+				<label for="tool">Tools</label>
+					<button value='1' class="tool" name="tool">
+						<i class="fa fa-pencil" aria-hidden="true"></i>
+					</button>
+					<button value='2' class="tool" name="tool">
+						<i class="fa fa-paint-brush" aria-hidden="true"></i>
+					</button>
+					<button value='3' class="tool" name="tool">
+						<i class="fa fa-spinner" aria-hidden="true"></i>
+					</button>
+					<button value='4' class="tool" name="tool">
+						<i class="fa fa-star-o" aria-hidden="true"></i>
+					</button>
+					<button value='5' class='tool' name='tool'>
+						<i class="fa fa-hashtag" aria-hidden="true"></i
+					></button>
+				</li>
+				<li>
+					<div class='currentinfo'>
+						<div class='currentcolor'>
+						</div>
+						<div class='lastcolor pen-color white' data-pen-color="white">
+						</div>
+						<div class='currenttool'>
+						<i class="fa fa-pencil" aria-hidden="true"></i>
+						</div>
+					</div>
+				</li>
+				<li>
+					<button id="download">Download as PNG <i class="fa fa-download" aria-hidden="true"></i></button>
+					<button id='save' title='effacer'>Save <i class='fa fa-save' aria-hidden="true"></i></button>
+					<button id="tool-clear-canvas" title="Effacer"><i class="fa fa-trash"></i></button>
+				</li>
+			</ul>
+		</nav>
+	</section>
+</body>
+</html>
